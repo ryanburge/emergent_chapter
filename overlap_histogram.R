@@ -48,38 +48,10 @@ df$delib <- df$delib1 + df$delib2 + df$delib3 + df$delib4 + df$delib5
 df$delib <- df$delib/max(df$delib)
 
 
+##Making the RAV measure
 
-
-##Recoding the ECM Approval variable
-df$ecm_sup <- df$q25
-df$ecm_sup <- 6- df$ecm_sup
-ggplot(df, aes(ecm_sup)) +geom_bar()
-
-
-
-df$male <- recode(df$q62, "1=1; else=0")
-df$white <- recode(df$q65_1, "1=1; else=0")
-df$repubid <- recode(df$q63, "8=0")
-df$repubid <- df$repubid/max(df$repubid)
-
-
-df$years <- gsub('years', '', df$q69_1_text)
-df$years <- gsub('year', '', df$years)
-df$years <- gsub('yrs', '', df$years)
-df$years <- gsub('YEARS', '', df$years)
-df$years <- recode(df$years, "1984=30")
-df$years <- gsub('\\+', '', df$years)
-trim <- function (x) gsub("^\\s+|\\s+$", "", x)
-df$years <- trim(df$years)
-df$years <- as.numeric(df$years)
-df$years <- df$years/max(df$years)
-
-df$educ <- df$q71 -1
-df$educ <- recode(df$educ, "-1=0")
-df$educ <- df$educ/max(df$educ)
-
-df$size <- df$q52
-df$size <- df$size/max(df$size)
+df$rav <- df$q26_2 + df$q26_3 + df$q26_5 + df$q26_7 + df$q26_9
+df$rav <- df$rav/25
 
 ##Subsetting based on Approval of ECM
 library(dplyr)
@@ -106,9 +78,4 @@ ggplot(data=subset(df.plot, !is.na(relcon)), aes(x=factor(relcon), fill=label)) 
   theme(legend.title = element_blank())
 
 
-## Regression
-
-library(dotwhisker)
-reg1 <- lm(ecm_sup ~ male + white + relcon + years + educ + size + repubid, data =df)
-dwplot(reg1)  + geom_vline(xintercept = 0, colour = "grey50", linetype = 2)
 
