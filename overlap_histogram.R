@@ -4,6 +4,7 @@ library(ggplot2)
 #library(dplyr)
 library(scales)
 library(car)
+library(Rmisc)
 
 
 df <- read_dta("clergy.dta")
@@ -33,7 +34,7 @@ df$dem4 <- df$q40_4
 
 df$dem <- df$dem1 + df$dem2 + df$dem3 + df$dem4
 df$dem <- 14 - df$dem
-df$dem <- recode(df$dem, "14=0")
+df$dem <- Recode(df$dem, "14=0")
 
 df$dem <- df$dem/10
 
@@ -52,6 +53,11 @@ df$delib <- df$delib/max(df$delib)
 
 df$rav <- df$q26_2 + df$q26_3 + df$q26_5 + df$q26_7 + df$q26_9
 df$rav <- df$rav/25
+
+##Authoritarianism
+
+df$authority <- df$q30_1 + df$q30_2 + df$q30_3
+df$authority <- df$authority/6
 
 ##Subsetting based on Approval of ECM
 library(dplyr)
