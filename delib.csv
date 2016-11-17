@@ -1,0 +1,9 @@
+cluster,hi,mean,lo,factor
+1,0.655,0.639,0.622,Evangelical
+2,0.938,0.672,0.405,Fundamentalist
+3,0.684,0.664,0.644,Liberal
+4,0.639,0.616,0.594,Orthodox
+5,0.675,0.659,0.644,Ecumenical
+6,0.67,0.577,0.484,Pentecostal
+7,0.664,0.641,0.618,Conservative
+8,0.715,0.678,0.642,Emergent
