@@ -5,9 +5,9 @@ ggplot(df, aes(ecm_sup)) +geom_bar()
 
 
 ## Recoding controls
-df$male <- recode(df$q62, "1=1; else=0")
-df$white <- recode(df$q65_1, "1=1; else=0")
-df$repubid <- recode(df$q63, "8=0")
+df$male <- Recode(df$q62, "1=1; else=0")
+df$white <- Recode(df$q65_1, "1=1; else=0")
+df$repubid <- Recode(df$q63, "8=0")
 df$repubid <- df$repubid/max(df$repubid)
 
 
@@ -15,7 +15,7 @@ df$years <- gsub('years', '', df$q69_1_text)
 df$years <- gsub('year', '', df$years)
 df$years <- gsub('yrs', '', df$years)
 df$years <- gsub('YEARS', '', df$years)
-df$years <- recode(df$years, "1984=30")
+df$years <- Recode(df$years, "1984=30")
 df$years <- gsub('\\+', '', df$years)
 trim <- function (x) gsub("^\\s+|\\s+$", "", x)
 df$years <- trim(df$years)
@@ -23,7 +23,7 @@ df$years <- as.numeric(df$years)
 df$years <- df$years/70
 
 df$educ <- df$q71 -1
-df$educ <- recode(df$educ, "-1=0")
+df$educ <- Recode(df$educ, "-1=0")
 df$educ <- df$educ/max(df$educ)
 
 df$size <- df$q52
@@ -39,5 +39,5 @@ dwplot(reg1)  + geom_vline(xintercept = 0, colour = "grey50", linetype = 2)
 
 dwplot(reg1)  + geom_vline(xintercept = 0, colour = "grey50", linetype = 2) +
   relabel_y_axis(c("Male", "White", "Religious Conservative", 
-                   "Years in Ministry", "Education", "Size of community", "Republican ID", "Religious Authority")) + xlab("Predicting Support for the ECM")
+                   "Years in Ministry", "Education", "Size of community", "Republican ID", "Religious Authority")) + xlab("Predicting Support for the ECM") + theme(text=element_text(size=16, family="Garamond"))
 
