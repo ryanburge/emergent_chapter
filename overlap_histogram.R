@@ -16,7 +16,7 @@ df[is.nan(df)] <- 0
 ##Making the relcon measure
 df$relcon <- df$q68_1 + df$q68_2 + df$q68_3 + df$q68_4 + df$q68_5 + df$q68_6
 df$relcon <- 31 - df$relcon
-df$relcon <- recode(df$relcon, "31=30")
+df$relcon <- Recode(df$relcon, "31=30")
 df$relcon <- df$relcon/30
 df$relcon <- round(df$relcon, 2)
 ggplot(df, aes(relcon)) +geom_bar()
@@ -53,6 +53,27 @@ df$delib <- df$delib/max(df$delib)
 
 df$rav <- df$q26_2 + df$q26_3 + df$q26_5 + df$q26_7 + df$q26_9
 df$rav <- df$rav/25
+
+##Making inclusive vs exclusive values
+df$incl1 <- df$q7_1  + df$q8_1 + df$q17_1 + df$q23_1
+df$incl1 <- 6-df$incl1
+df$incl1 <- Recode(df$incl1, "6=0")
+df$incl2 <- df$q7_2  + df$q8_2 + df$q17_2 + df$q23_2
+df$incl2 <- 6-df$incl2
+df$incl2 <- Recode(df$incl2, "6=0")
+df$incl3 <- df$incl1 + df$incl2
+
+df$inclusive <- df$incl3/10
+
+df$exc1 <- df$q7_3  + df$q12_3 + df$q13_1 + df$q23_3
+df$exc1 <- 6 - df$exc1
+df$exc1 <- Recode(df$exc1, "6=0")
+df$exc2 <- df$q7_4  + df$q12_4 + df$q13_2 + df$q23_4
+df$exc2 <- 6 - df$exc2
+df$exc2 <- Recode(df$exc2, "6=0")
+df$exc3 <- df$exc1 + df$exc2
+df$exclusive <- df$exc3/10
+
 
 ##Authoritarianism
 
