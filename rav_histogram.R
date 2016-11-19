@@ -25,8 +25,9 @@ rav <- read.csv("rav.csv")
 
 limits <- aes(ymax = rav$hi, ymin= rav$lo)
 
-rav <- filter(df, rav > 0)
-ggplot(rav, aes(x=reorder(factor, mean), y=mean)) + geom_bar(stat = "identity") + coord_flip() + geom_errorbar(limits, width=0.30 ) + xlab("Religious Label") + ylab("Religious Authority") + theme(text=element_text(size=16, family="Garamond")) 
+rav <- filter(rav, rav > 0)
+rav <- filter(rav, rav > 0)
+ggplot(rav, aes(x=reorder(factor, mean), y=mean)) + geom_bar(stat = "identity") + coord_flip() + geom_errorbar(limits, width=0.30 ) + xlab("Religious Label") + ylab("Religious Authority") + theme(text=element_text(size=16, family="Garamond")) + geom_hline(yintercept = .67, linetype = "longdash")
 
 ggplot(df %>% filter(rav > 0), aes(x=relcon, y=rav)) + geom_point(shape =1, position=position_jitter(width=.1,height=.1)) + geom_smooth(method=lm) + xlab("Religious Conservative") + ylab("Religious Authority") + theme(text=element_text(size=16, family="Garamond")) 
 
