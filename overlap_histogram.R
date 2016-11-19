@@ -53,6 +53,7 @@ df$delib <- df$delib/max(df$delib)
 
 df$rav <- df$q26_2 + df$q26_3 + df$q26_5 + df$q26_7 + df$q26_9
 df$rav <- df$rav/25
+df <- filter(df, rav >0)
 
 ##Making inclusive vs exclusive values
 df$incl1 <- df$q7_1  + df$q8_1 + df$q17_1 + df$q23_1
