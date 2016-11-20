@@ -50,11 +50,8 @@ delibplot$mean <- 6- delibplot$mean
 delibplot$question <- factor(delibplot$question, levels=unique(delibplot$question))
 
 p2 <- ggplot(delibplot, aes(x = mean, y = question))  +
-  geom_point(color = "black", shape=21, size =4, aes(fill = factor(label))) + 
-  scale_fill_manual(values=c("gray", "black")) +  theme(legend.title=element_blank()) + 
-  theme(legend.position = "bottom") +xlab("Mean Score") + ylab("Deliberative Values") + xlim(1,5) + theme(text=element_text(size=16, family="Garamond")) +
-  labs(caption = "All values significant at .05 level except for Talk Through Differences")
-
+  geom_point(color = "black", shape=21, size =4, aes(fill = factor(label))) +  theme(legend.title=element_blank()) + 
+  theme(legend.position = "bottom") +xlab("Mean Score") + ylab("Deliberative Values") + xlim(1,5) + theme(text=element_text(size=16, family="Garamond")) 
 grid.newpage()
 grid.draw(rbind(ggplotGrob(p1), ggplotGrob(p2), size = "last"))
 
