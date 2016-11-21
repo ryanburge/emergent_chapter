@@ -1,3 +1,7 @@
+library(car)
+library(ggplot2)
+
+
 df <- read_dta("clergy.dta")
 
 is.nan.data.frame <- function(x)
