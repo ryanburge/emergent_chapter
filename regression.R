@@ -1,7 +1,7 @@
 ##Recoding the ECM Approval variable
 df$ecm_sup <- df$q25
 df$ecm_sup <- 6- df$ecm_sup
-ggplot(df, aes(ecm_sup)) +geom_bar()
+df$ecm_sup <- df$ecm_sup/6
 
 
 ## Recoding controls
@@ -29,15 +29,19 @@ df$educ <- df$educ/max(df$educ)
 df$size <- df$q52
 df$size <- df$size/max(df$size)
 
+df$rav <- df$q26_2 + df$q26_3 + df$q26_5 + df$q26_7 + df$q26_9
+df$rav <- df$rav/25
+df <- filter(df, rav >0)
+
 
 ## Regression and dotwhisker
 
 library(dotwhisker)
-reg1 <- lm(ecm_sup ~ male + white + relcon + years + educ + size + repubid + rav, data =df)
+reg1 <- lm(repubid ~ ecm_sup + male + white + relcon + years + educ + size +  + rav, data =df)
 
-dwplot(reg1)  + geom_vline(xintercept = 0, colour = "grey50", linetype = 2)
+#dwplot(reg1)  + geom_vline(xintercept = 0, colour = "grey50", linetype = 2)
 
 dwplot(reg1)  + geom_vline(xintercept = 0, colour = "grey50", linetype = 2) +
-  relabel_y_axis(c("Male", "White", "Religious Conservative", 
-                   "Years in Ministry", "Education", "Size of community", "Republican ID", "Religious Authority")) + xlab("Predicting Support for the ECM") + theme(text=element_text(size=16, family="Garamond"))
+  relabel_y_axis(c("Support of ECM", "Male", "White", "Religious Conservative", 
+                   "Years in Ministry", "Education", "Size of community", "Religious Authority")) + xlab("Predicting Party Identification") + theme(text=element_text(size=16, family="Garamond"))
 
