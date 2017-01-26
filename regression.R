@@ -43,5 +43,5 @@ reg1 <- lm(repubid ~ ecm_sup + male + white + relcon + years + educ + size +  + 
 
 dwplot(reg1)  + geom_vline(xintercept = 0, colour = "grey50", linetype = 2) +
   relabel_y_axis(c("Support of ECM", "Male", "White", "Religious Conservative", 
-                   "Years in Ministry", "Education", "Size of community", "Religious Authority")) + xlab("Predicting Party Identification") + theme(text=element_text(size=16, family="Garamond"))
+                   "Years in Ministry", "Education", "Size of community", "Religious Authority")) + xlab("Predicting Republican Identification") + theme(text=element_text(size=16, family="Garamond"))
 
